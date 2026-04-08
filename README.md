@@ -10,20 +10,13 @@ This automation takes cleaned survey outputs, calculates recurring demographic s
 
 The original working version was built inside a larger internal survey analysis repository. For portfolio use, this version focuses on the automation logic and removes machine-specific setup details, private IDs, and organization-specific naming.
 
-## What This Demonstrates
+## Prcesses involved
 
 - Translating a manual reporting workflow into a repeatable script
 - Connecting R analysis outputs to Google Sheets for stakeholder reporting
 - Structuring demographic rollups for recurring operational updates
 - Refactoring a one-off local script into a shareable, configurable project artifact
 
-## Portfolio-Friendly Improvements
-
-- Added synthetic demo inputs so the project can run out of the box
-- Replaced hard-coded local paths with a config file template
-- Isolated the report automation into a standalone script
-- Removed live credentials and private spreadsheet identifiers
-- Added local CSV outputs so reviewers can run the workflow without external services
 ## Files
 
 - `report_automation_portfolio.R`: public-facing version of the automation workflow
@@ -62,16 +55,3 @@ If you want to write to your own Google Sheet:
 3. Install `googlesheets4` and `googledrive` if needed.
 4. Re-run the script and authenticate with Google when prompted.
 
-## Notes For Reviewers
-
-This repository version is intentionally sanitized but runnable:
-
-- No private data is included
-- No production Google Sheet IDs are exposed
-- The demo data is synthetic and intended only to demonstrate the workflow
-
-## Suggested GitHub Framing
-
-If you publish this as a portfolio repo, a good subtitle would be:
-
-`R automation workflow for recurring survey reporting, demographic summaries, and Google Sheets delivery`
