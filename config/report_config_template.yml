@@ -1,7 +1,9 @@
-project_root: "/absolute/path/to/your/survey/project"
-google_sheet_id: "REPLACE_WITH_YOUR_GOOGLE_SHEET_ID"
+use_google_sheets: false
+# Add your own Google Sheet ID here if you want the script to upload results.
+google_sheet_id: "PASTE_YOUR_SHEET_ID_HERE"
 demographics_sheet_name: "Sheet2"
 source_codes_sheet_name: "source codes"
-wrangled_data_path: "data/output/wrangled.csv"
-cleaned_unfiltered_path: "data/processed/cleaned_unfiltered.csv"
-source_codes_path: "data/input/f25_source_codes.csv"
+wrangled_data_path: "data/demo/wrangled_demo.csv"
+cleaned_unfiltered_path: "data/demo/cleaned_unfiltered_demo.csv"
+source_codes_path: "data/demo/source_codes_demo.csv"
+output_dir: "output"

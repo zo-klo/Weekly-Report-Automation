@@ -1,0 +1,94 @@
+section,variable,count,per,total
+Gender,man,4,0.33,12
+Gender,nonbinary,1,0.08,12
+Gender,transgender,1,0.08,12
+Gender,woman,6,0.5,12
+NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA
+Race,Asian / Pacific Islander,2,0.17,12
+Race,Black,4,0.33,12
+Race,Latino/Biracial,3,0.25,12
+Race,Middle Eastern / North African,1,0.08,12
+Race,White,2,0.17,12
+NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA
+Borough,Bronx,3,0.25,12
+Borough,Brooklyn,3,0.25,12
+Borough,Manhattan,2,0.17,12
+Borough,Queens,3,0.25,12
+Borough,Staten Island,1,0.08,12
+NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA
+Religion,Christian,5,0.42,12
+Religion,Hindu,1,0.08,12
+Religion,Jewish,1,0.08,12
+Religion,Muslim,2,0.17,12
+Religion,None/Unaffiliated,3,0.25,12
+NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA
+Education,Associate degree,1,0.08,12
+Education,Bachelor's degree,2,0.17,12
+Education,Graduate degree,3,0.25,12
+Education,High school,3,0.25,12
+Education,Some college,3,0.25,12
+NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA
+Income,$100k+,1,0.08,12
+Income,$25k-$49k,4,0.33,12
+Income,$50k-$74k,2,0.17,12
+Income,$75k-$99k,2,0.17,12
+Income,Under $25k,3,0.25,12
+NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA
+Below Poverty / Low Income,No,6,0.5,12
+Below Poverty / Low Income,Yes,6,0.5,12
+NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA
+Household With a Disability,No,8,0.67,12
+Household With a Disability,Yes,4,0.33,12
+NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA
+Length of Time in NYC,1-4 years,2,0.17,12
+Length of Time in NYC,10+ years,5,0.42,12
+Length of Time in NYC,5-10 years,3,0.25,12
+Length of Time in NYC,Less than 1 year,2,0.17,12
+NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA
+Housing,Owner,3,0.25,12
+Housing,Renter,9,0.75,12
+NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA
+Renters,Market-rate,2,0.17,12
+Renters,Public housing,2,0.17,12
+Renters,Stabilized,3,0.25,12
+Renters,Staying with family/friends,1,0.08,12
+Renters,Voucher,1,0.08,12
+Renters,NA,3,0.25,12
+NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA
+Another Language,No,5,0.42,12
+Another Language,Yes,7,0.58,12
+NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA
+LGBTQIA+,LGBTQIA+,4,0.33,12
+LGBTQIA+,Not LGBTQIA+,8,0.67,12
+NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA
+Respondent Is a Senior,No,10,0.83,12
+Respondent Is a Senior,Yes,2,0.17,12
+NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA
+Household With Seniors,No,7,0.58,12
+Household With Seniors,Yes,5,0.42,12
+NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA
+Household With Children,No,5,0.42,12
+Household With Children,Yes,7,0.58,12
+NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA
+Household With Young Children,No,8,0.67,12
+Household With Young Children,Yes,4,0.33,12
+NA,NA,NA,NA,NA
+NA,NA,NA,NA,NA
+Respondent Is Unemployed,No,6,0.5,12
+Respondent Is Unemployed,Yes,6,0.5,12

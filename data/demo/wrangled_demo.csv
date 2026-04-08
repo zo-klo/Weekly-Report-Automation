@@ -1,0 +1,13 @@
+responseid,gender_2,race_census,borough,relig,sch_level,income,below_poverty_bi,hh_disability,res_length,res_type,res_type_rent,not_eng,lgbtq,senior,hh_elderly,hh_child,hh_child_young,unemp_bi,source
+r_demo_001,woman,Black,Bronx,Christian,High school,"$25k-$49k",Yes,No,10+ years,Renter,Market-rate,Yes,Not LGBTQIA+,No,Yes,Yes,No,No,r
+r_demo_002,man,Latino/Biracial,Queens,None/Unaffiliated,Bachelor's degree,"$50k-$74k",No,No,5-10 years,Renter,Stabilized,No,Not LGBTQIA+,No,No,Yes,Yes,Yes,fb
+r_demo_003,woman,White,Brooklyn,Jewish,Graduate degree,"$75k-$99k",No,Yes,10+ years,Owner,NA,No,LGBTQIA+,No,No,No,No,No,ig
+r_demo_004,nonbinary,Asian / Pacific Islander,Manhattan,None/Unaffiliated,Some college,"Under $25k",Yes,No,1-4 years,Renter,Public housing,Yes,LGBTQIA+,No,No,No,No,Yes,12p
+r_demo_005,man,Black,Bronx,Muslim,High school,"Under $25k",Yes,Yes,Less than 1 year,Renter,Staying with family/friends,Yes,Not LGBTQIA+,Yes,Yes,No,No,Yes,r
+r_demo_006,woman,Latino/Biracial,Queens,Christian,Associate degree,"$25k-$49k",No,No,10+ years,Renter,Stabilized,No,Not LGBTQIA+,No,No,Yes,Yes,No,tiktok
+r_demo_007,woman,Asian / Pacific Islander,Brooklyn,Hindu,Graduate degree,"$100k+",No,No,5-10 years,Owner,NA,Yes,Not LGBTQIA+,No,Yes,Yes,No,No,partner
+r_demo_008,man,White,Staten Island,Christian,Some college,"$50k-$74k",No,No,10+ years,Renter,Market-rate,No,Not LGBTQIA+,No,No,No,No,No,flyer
+r_demo_009,woman,Black,Manhattan,None/Unaffiliated,Bachelor's degree,"$25k-$49k",Yes,Yes,1-4 years,Renter,Voucher,Yes,LGBTQIA+,No,No,Yes,Yes,Yes,15p
+r_demo_010,transgender,Latino/Biracial,Brooklyn,Christian,High school,"Under $25k",Yes,No,Less than 1 year,Renter,Public housing,Yes,LGBTQIA+,No,No,No,No,Yes,r
+r_demo_011,woman,Middle Eastern / North African,Queens,Muslim,Graduate degree,"$75k-$99k",No,No,10+ years,Owner,NA,Yes,Not LGBTQIA+,No,Yes,Yes,No,No,email
+r_demo_012,man,Black,Bronx,Christian,Some college,"$25k-$49k",Yes,Yes,5-10 years,Renter,Stabilized,No,Not LGBTQIA+,Yes,Yes,Yes,Yes,Yes,fb
