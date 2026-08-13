@@ -34,6 +34,7 @@ The original workflow was developed within a larger internal survey-analysis rep
 
 This public version preserves the automation logic while removing private IDs, organization-specific naming, credentials, and machine-specific configuration. Synthetic demo data matching the required input structure is included so the workflow can be run end-to-end.
 
+
 ## Files
 
 - `report_automation_portfolio.R` — main automation workflow
