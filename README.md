@@ -1,57 +1,67 @@
-# Report Automation Portfolio Piece
+# Weekly Report Automation
 
-Back in February, I noticed an opportunity to streamline my organization's weekly data tracking system, which involved manually pasting data from R into Google Sheets.
+An R workflow that automates recurring survey reporting, replacing manual data transfer with a reproducible pipeline for demographic summaries and stakeholder-ready outputs.
 
-This repository represents a sanitized version of the R automation workflow I developed. The original working version was built inside a larger internal survey analysis repository as an extension of an existing workflow, and this public version is also runnable with synthetic demo data.
+## Overview
 
-## Project Summary
+This project grew out of a recurring reporting workflow that required manually transferring survey results from R into Google Sheets. I developed an automation workflow to reduce repetitive reporting work and make weekly updates more consistent and reproducible.
 
-This automation takes cleaned survey outputs, calculates recurring demographic summaries, groups source codes, and writes each run to shareable output files. It can also optionally append results to a Google Sheet.
+The workflow:
 
-The original working version was built inside a larger internal survey analysis repository. For portfolio use, this version focuses on the automation logic and removes machine-specific setup details, private IDs, and organization-specific naming.
+- processes cleaned survey outputs
+- calculates recurring demographic summaries
+- groups and standardizes source codes
+- generates shareable reporting files
+- optionally appends results directly to Google Sheets
 
-## Prcesses involved
+## Why I Built It
 
-- Translating a manual reporting workflow into a repeatable script
-- Connecting R analysis outputs to Google Sheets for stakeholder reporting
-- Structuring demographic rollups for recurring operational updates
-- Refactoring a one-off local script into a shareable, configurable project artifact
+The original reporting process involved manually copying results from R into shared spreadsheets each week. Because the same transformations and summaries were repeated across reporting cycles, the workflow was a good candidate for automation.
+
+I translated those recurring steps into a configurable R script that could reproduce the required summaries and prepare them for stakeholder reporting.
+
+## Workflow
+
+1. Load cleaned survey data and configuration settings
+2. Calculate recurring demographic summaries
+3. Group source codes into reporting categories
+4. Generate standardized output files
+5. Optionally append results to a shared Google Sheet
+
+## Portfolio Version
+
+The original workflow was developed within a larger internal survey-analysis repository using private organizational data.
+
+This public version preserves the automation logic while removing private IDs, organization-specific naming, credentials, and machine-specific configuration. Synthetic demo data matching the required input structure is included so the workflow can be run end-to-end.
 
 ## Files
 
-- `report_automation_portfolio.R`: public-facing version of the automation workflow
-- `config/report_config_template.yml`: template for local configuration
-- `data/demo/`: synthetic example inputs that mirror the required structure
-- `output/`: generated results from the demo workflow
-- `.gitignore`: keeps local credentials and generated artifacts out of version control
+- `report_automation_portfolio.R` — main automation workflow
+- `config/report_config_template.yml` — configuration template
+- `data/demo/` — synthetic example inputs
+- `output/` — example generated outputs
+- `.gitignore` — excludes credentials, local configuration, and generated artifacts
 
-## Demo Inputs
-
-The repository includes synthetic demo versions of the three required inputs:
-
-- `data/demo/wrangled_demo.csv`
-- `data/demo/cleaned_unfiltered_demo.csv`
-- `data/demo/source_codes_demo.csv`
-
-These files are fake but structurally similar to the real reporting inputs, so reviewers can run the workflow without access to private survey data.
-
-## Using Real Data
-
-To point the project at your real survey files, update the paths in `config/report_config.yml` after copying from the template.
-
-## How To Run
+## How to Run
 
 1. Copy `config/report_config_template.yml` to `config/report_config.yml`.
-2. Leave the demo file paths as-is for a reproducible local run.
-3. Open `report_automation_portfolio.R` in RStudio or run it with `Rscript`.
-4. Check the generated CSVs in `output/`.
+2. Leave the demo file paths unchanged for a reproducible local run.
+3. Run `report_automation_portfolio.R` in RStudio or with `Rscript`.
+4. Review the generated reporting files in `output/`.
 
-## Optional Google Sheets Upload
+## Optional Google Sheets Integration
 
-If you want to write to your own Google Sheet:
+To connect the workflow to your own Google Sheet:
 
 1. Set `use_google_sheets: true` in `config/report_config.yml`.
-2. Replace `PASTE_YOUR_SHEET_ID_HERE` with your sheet ID.
+2. Add your Google Sheet ID.
 3. Install `googlesheets4` and `googledrive` if needed.
-4. Re-run the script and authenticate with Google when prompted.
+4. Run the script and authenticate with Google when prompted.
 
+## Tools
+
+- R
+- tidyverse
+- YAML
+- googlesheets4
+- googledrive
