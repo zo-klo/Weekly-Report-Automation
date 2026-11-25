@@ -35,6 +35,22 @@ The original workflow was developed within a larger internal survey-analysis rep
 This public version preserves the automation logic while removing private IDs, organization-specific naming, credentials, and machine-specific configuration. Synthetic demo data matching the required input structure is included so the workflow can be run end-to-end.
 
 
+## Example Output
+
+Google Sheets output using the portfolio version's synthetic demo data.
+
+### Report preview
+
+![Report preview showing response counts and demographic summaries](docs/screenshots/automation-cover.png)
+
+### Demographic summaries
+
+![Google Sheets showing response counts and demographic summaries](docs/screenshots/automation-demographics.png)
+
+### Source codes
+
+![Google Sheets showing standardized source codes, counts, shares, labels, and outreach groups](docs/screenshots/automation-source-codes.png)
+
 ## Files
 
 - `report_automation_portfolio.R` — main automation workflow
