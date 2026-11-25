@@ -59,10 +59,13 @@ install.packages(c("dplyr", "readr", "stringr", "gtools", "yaml", "rmarkdown", "
 
 ## Optional Google Sheets Integration
 
-1. Create any missing tabs named `Sheet1` and `source codes` in a spreadsheet you can edit.
+Use the [public demo spreadsheet](https://docs.google.com/spreadsheets/d/1ZMKmJ8zttxe1u7TiJZea9dECFLtKiGsBZVCc_Nrimt0/edit?gid=50620692#gid=50620692) to see the layout. To test the upload, [make your own copy](https://docs.google.com/spreadsheets/d/1ZMKmJ8zttxe1u7TiJZea9dECFLtKiGsBZVCc_Nrimt0/copy) while signed in to Google.
+
+1. In your copy, create any missing tabs named `Sheet1` and `source codes`. If `Sheet1` already has a different layout, rename that tab and add a blank `Sheet1` for the test.
 2. Install `googlesheets4` with `install.packages("googlesheets4")`.
-3. For the notebook, enter your sheet ID in Setup. For the standalone script, copy the config template to `config/report_config.yml`, enter your sheet ID, and set `use_google_sheets: true`.
-4. Run the notebook or script and authenticate with Google when prompted.
+3. Copy the spreadsheet ID from your copy's URL. It's the text between `/d/` and `/edit`.
+4. For the notebook, enter that ID in Setup. For the standalone script, copy the config template to `config/report_config.yml`, enter the ID, and set `use_google_sheets: true`.
+5. Run the notebook or script and authenticate with Google when prompted.
 
 On a blank `Sheet1`, the report writes section and category labels in columns A and B and the first run in C and D. Later runs add count and share columns to the right after checking that the category labels still match. Recruitment summaries append down the `source codes` tab.
 
