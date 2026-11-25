@@ -1,0 +1,163 @@
+---
+title: "Weekly Report Automation"
+author: "Zoe Klotz"
+output: html_document
+---
+
+## Setup
+
+The demo starts with synthetic versions of the cleaned survey files. In the original workflow, the cleaning notebook created `final_clean` and `final_clean_filtered` before the reporting notebook ran.
+
+```{r setup, message=FALSE}
+library(dplyr)
+library(readr)
+library(stringr)
+
+# Add your own Google Sheet ID here to upload. Leave blank to run locally.
+sheet_id <- ""
+
+final_clean <- read_csv("data/demo/cleaned_unfiltered_demo.csv", show_col_types = FALSE)
+final_clean_filtered <- final_clean %>% filter(status == "included")
+wrangled <- read_csv("data/demo/wrangled_demo.csv", col_types = cols(source = col_character()))
+codes <- read_csv("data/demo/source_codes_demo.csv", col_types = cols(source = col_character()))
+
+dir.create("output/original-demo", recursive = TRUE, showWarnings = FALSE)
+run_date <- Sys.Date()
+```
+
+## Response counts and demographics
+
+```{r entry-counts}
+# Count all cleaned responses and the responses included in the report.
+all_n <- nrow(final_clean)
+included_n <- nrow(final_clean_filtered)
+
+entry_counts_row <- tibble(
+  label = c("Date", "All Responses", "Included Responses"),
+  value = c(
+    as.character(run_date),
+    all_n,
+    paste0(included_n, " (", round(included_n / all_n * 100, 1), "%)")
+  )
+)
+
+write_csv(entry_counts_row, "output/original-demo/entry_counts.csv")
+knitr::kable(entry_counts_row)
+```
+
+```{r demographics}
+summarize_section <- function(data, var, section_name) {
+  total_n <- nrow(data)
+
+  data %>%
+    count({{ var }}, name = "count") %>%
+    mutate(
+      per = round(count / total_n, 2),
+      total = total_n,
+      section = section_name,
+      variable = as.character({{ var }})
+    ) %>%
+    select(section, variable, count, per, total)
+}
+
+gen_tbl            <- summarize_section(wrangled, gender_2, "Gender")
+race_tbl           <- summarize_section(wrangled, race_census, "Race")
+borough_tbl        <- summarize_section(wrangled, borough, "Borough")
+religion_tbl       <- summarize_section(wrangled, relig, "Religion")
+education_tbl      <- summarize_section(wrangled, sch_level, "Education")
+income_tbl         <- summarize_section(wrangled, income, "Income")
+lowinc_tbl         <- summarize_section(wrangled, below_poverty_bi, "Below Poverty / Low Income")
+disable_tbl        <- summarize_section(wrangled, hh_disability, "Household With a Disability")
+nytime_tbl         <- summarize_section(wrangled, res_length, "Length of Time in NYC")
+res_type_tbl       <- summarize_section(wrangled, res_type, "Housing")
+rent_type_tbl      <- summarize_section(wrangled, res_type_rent, "Renters")
+not_eng_tbl        <- summarize_section(wrangled, not_eng, "Another Language")
+lgbtq_tbl          <- summarize_section(wrangled, lgbtq, "LGBTQIA+")
+senior_tbl         <- summarize_section(wrangled, senior, "Respondent Is a Senior")
+hh_elderly_tbl     <- summarize_section(wrangled, hh_elderly, "Household With Seniors")
+hh_child_tbl       <- summarize_section(wrangled, hh_child, "Household With Children")
+hh_child_young_tbl <- summarize_section(wrangled, hh_child_young, "Household With Young Children")
+unemp_bi_tbl       <- summarize_section(wrangled, unemp_bi, "Respondent Is Unemployed")
+
+# The spreadsheet layout has two blank rows between demographic sections.
+blank_rows <- tibble(count = c(NA_real_, NA_real_), per = c(NA_real_, NA_real_))
+
+final_tbl <- bind_rows(
+  gen_tbl, blank_rows,
+  race_tbl, blank_rows,
+  borough_tbl, blank_rows,
+  religion_tbl, blank_rows,
+  education_tbl, blank_rows,
+  income_tbl, blank_rows,
+  lowinc_tbl, blank_rows,
+  disable_tbl, blank_rows,
+  nytime_tbl, blank_rows,
+  res_type_tbl, blank_rows,
+  rent_type_tbl, blank_rows,
+  not_eng_tbl, blank_rows,
+  lgbtq_tbl, blank_rows,
+  senior_tbl, blank_rows,
+  hh_elderly_tbl, blank_rows,
+  hh_child_tbl, blank_rows,
+  hh_child_young_tbl, blank_rows,
+  unemp_bi_tbl
+)
+
+write_csv(final_tbl, "output/original-demo/demographics_summary.csv")
+knitr::kable(final_tbl %>% filter(!is.na(section)))
+```
+
+## Source codes
+
+```{r source-codes}
+sourcecodes <- wrangled %>%
+  mutate(
+    source = if_else(str_detect(source, "^r"), "r", source),
+    source = if_else(str_detect(source, "^\\d+p"), str_sub(source, end = -2), source)
+  ) %>%
+  count(source, name = "count") %>%
+  mutate(per = round(count / sum(count), 2), total = sum(count)) %>%
+  slice(gtools::mixedorder(source)) %>%
+  left_join(codes, by = "source")
+
+date_row <- tibble(source = paste("Run Date:", run_date, "| Total N:", nrow(wrangled)))
+block_to_write_sc <- bind_rows(date_row, sourcecodes)
+
+write_csv(block_to_write_sc, "output/original-demo/source_codes_summary.csv")
+knitr::kable(sourcecodes)
+```
+
+## Google Sheets
+
+Upload is optional. Install `googlesheets4` and enter a sheet ID in Setup. The destination spreadsheet needs tabs named exactly `Sheet1` and `source codes`. Create any missing tabs manually. On a blank `Sheet1`, the notebook fills in the section and category labels in columns A and B and writes the first run in columns C and D.
+
+```{r upload-to-sheets}
+if (nzchar(sheet_id)) {
+  library(googlesheets4)
+  gs4_auth()
+
+  demographics_tab <- "Sheet1"
+  sources_tab <- "source codes"
+  missing_tabs <- setdiff(c(demographics_tab, sources_tab), sheet_names(sheet_id))
+  if (length(missing_tabs) > 0) {
+    stop(
+      paste0("Create these tabs in Google Sheets before uploading: ",
+             paste(sQuote(missing_tabs), collapse = ", ")),
+      call. = FALSE
+    )
+  }
+
+  source("write_demographics_run.R", local = TRUE)
+  write_demographics_run(sheet_id, demographics_tab, entry_counts_row, final_tbl)
+
+  # Append the new source block below the previous run.
+  existing_sources <- read_sheet(sheet_id, sheet = sources_tab, col_names = FALSE)
+  start_row <- if (nrow(existing_sources) == 0) 1 else nrow(existing_sources) + 3
+
+  range_write(
+    sheet_id, sheet = sources_tab, data = block_to_write_sc,
+    range = cell_limits(ul = c(start_row, 1)), col_names = TRUE
+  )
+  message("Wrote recruitment sources to ", sources_tab, " starting at row ", start_row, ".")
+}
+```

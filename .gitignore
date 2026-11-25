@@ -3,3 +3,5 @@
 .RData
 .Renviron
 config/report_config.yml
+/output/original-demo/
+/reporting_automation_original_demo.html

@@ -38,6 +38,8 @@ This public version preserves the automation logic while removing private IDs, o
 ## Files
 
 - `report_automation_portfolio.R` — main automation workflow
+- `reporting_automation_original_demo.Rmd` — original reporting notebook adapted to run with synthetic data
+- `write_demographics_run.R` — shared Google Sheets layout for the notebook and script
 - `config/report_config_template.yml` — configuration template
 - `data/demo/` — synthetic example inputs
 - `output/` — example generated outputs
@@ -45,19 +47,24 @@ This public version preserves the automation logic while removing private IDs, o
 
 ## How to Run
 
-1. Copy `config/report_config_template.yml` to `config/report_config.yml`.
-2. Leave the demo file paths unchanged for a reproducible local run.
-3. Run `report_automation_portfolio.R` in RStudio or with `Rscript`.
-4. Review the generated reporting files in `output/`.
+Install the demo dependencies once in R.
+
+```r
+install.packages(c("dplyr", "readr", "stringr", "gtools", "yaml", "rmarkdown", "knitr"))
+```
+
+**Original reporting notebook.** Open [reporting_automation_original_demo.Rmd](reporting_automation_original_demo.Rmd) in RStudio and click **Knit**. The notebook builds an HTML report and writes three CSVs to `output/original-demo/`. It recreates the original cleaning objects from synthetic inputs for the response counts.
+
+**Standalone script.** From the downloaded project folder, run `Rscript report_automation_portfolio.R`. The script uses the bundled demo configuration and writes three CSVs to `output/`.
 
 ## Optional Google Sheets Integration
 
-To connect the workflow to your own Google Sheet:
+1. Create any missing tabs named `Sheet1` and `source codes` in a spreadsheet you can edit.
+2. Install `googlesheets4` with `install.packages("googlesheets4")`.
+3. For the notebook, enter your sheet ID in Setup. For the standalone script, copy the config template to `config/report_config.yml`, enter your sheet ID, and set `use_google_sheets: true`.
+4. Run the notebook or script and authenticate with Google when prompted.
 
-1. Set `use_google_sheets: true` in `config/report_config.yml`.
-2. Add your Google Sheet ID.
-3. Install `googlesheets4` and `googledrive` if needed.
-4. Run the script and authenticate with Google when prompted.
+On a blank `Sheet1`, the report writes section and category labels in columns A and B and the first run in C and D. Later runs add count and share columns to the right after checking that the category labels still match. Recruitment summaries append down the `source codes` tab.
 
 ## Tools
 
@@ -65,4 +72,3 @@ To connect the workflow to your own Google Sheet:
 - tidyverse
 - YAML
 - googlesheets4
-- googledrive
